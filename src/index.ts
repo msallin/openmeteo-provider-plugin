@@ -97,7 +97,9 @@ module.exports = (server: OpenMeteoProviderApp): Plugin => {
       settings.weather.apiKey = options.weather.apiKey ?? ''
       settings.weather.cacheTTL = options.weather.cacheTTL ?? 10
 
-      server.debug(`Applied config: ${JSON.stringify(settings)}`)
+      if (server.debug.enabled) {
+        server.debug(`Applied config: ${JSON.stringify(settings)}`)
+      }
 
       initWeather(server, plugin.id, settings.weather)
 
